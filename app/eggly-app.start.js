@@ -21,31 +21,43 @@ angular.module('Eggly', [
     {"id":8, "title": "Dump", "url": "http://dump.com", "category": "Humor" }
   ];
 
+  $scope.isCreating = false;
+  $scope.isEditing = false;
   $scope.currentCategory = null;
+  $scope.editedBookmark = null;
+
+  //return true if the category is not null and the names match up
+  function isCurrentCategory(category){
+    return $scope.currentCategory !== null && category.name == $scope.currentCategory.name;
+  }
 
   function setCurrentCategory(category){
     $scope.currentCategory = category;
-  }
-  //return true if the category is not null and the names match up
-  function isCurrentCategory(category){
-    return $scope.currentCategory !== null && category.name == currentCategory.name;
+
+    cancelCreating();
+    cancelEditing();
   }
 
-  //until this line, these are private functions. Once attached to scope, they become public and avialable to the view
   $scope.setCurrentCategory = setCurrentCategory;
   $scope.isCurrentCategory = isCurrentCategory;
+
+  function setEditedBookmark(bookmark){
+    $scope.editedBookmark = angular.copy(bookmark);
+  }
+
+   $scope.setEditedBookmark = setEditedBookmark;
+
+   function resetCreateForm(){
+     $scope.newBookmark = {
+       title: '',
+       url: '',
+       category: $scope.currentCategory
+     }
+   }
 
   //-------------------------------------------------------------------------------------------------
   // CRUD
   //-------------------------------------------------------------------------------------------------
-
-  function resetCreateForm(){
-    $scope.newBookmark = {
-      title: '',
-      url: '',
-      category: $scope.currentCategory
-    }
-  }
 
   function createBookmark(bookmark){
     bookmark.id = $scope.bookmarks.length;
@@ -54,7 +66,22 @@ angular.module('Eggly', [
     resetCreateForm();
   }
 
+  function updateBookmark(bookmark){
+    var index = _.findIndex($scope.bookmarks, function(b){
+      return b.id == bookmark.id;
+    });
+    $scope.bookmarks[index] = bookmark;
+
+    $scope.editedBookmark = null;
+    $scope.isEditing = false;
+  }
+
   $scope.createBookmark = createBookmark;
+  $scope.updateBookmark = updateBookmark;
+
+  //-------------------------------------------------------------------------------------------------
+  // CREATING AND EDITING STATES
+  //-------------------------------------------------------------------------------------------------
 
   function shouldShowCreating() {
     return $scope.currentCategory && !$scope.isEditing;
@@ -89,8 +116,8 @@ angular.module('Eggly', [
     $scope.editedBookmark = null;
   }
 
-  $scope.shouldShowEditing = shouldShowEditing;
   $scope.startEditing = startEditing;
   $scope.cancelEditing = cancelEditing;
+  $scope.shouldShowEditing = shouldShowEditing;
 
 });
