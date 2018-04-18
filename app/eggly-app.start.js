@@ -38,20 +38,26 @@ angular.module('Eggly', [
     cancelEditing();
   }
 
-  $scope.setCurrentCategory = setCurrentCategory;
   $scope.isCurrentCategory = isCurrentCategory;
+  $scope.setCurrentCategory = setCurrentCategory;
 
   function setEditedBookmark(bookmark){
     $scope.editedBookmark = angular.copy(bookmark);
   }
 
-   $scope.setEditedBookmark = setEditedBookmark;
+  //if this returns true, we know we have the selected bookmark
+  function isSelectedBookmark(bookmarkId){
+    return $scope.editedBookmark !== null && $scope.editedBookmark.id == bookmarkId;
+  }
+
+  $scope.setEditedBookmark = setEditedBookmark;
+  $scope.isSelectedBookmark = isSelectedBookmark;
 
    function resetCreateForm(){
      $scope.newBookmark = {
        title: '',
        url: '',
-       category: $scope.currentCategory
+       category: $scope.currentCategory.name
      }
    }
 
@@ -76,14 +82,16 @@ angular.module('Eggly', [
     $scope.isEditing = false;
   }
 
-  //if this returns true, we know we have the selected bookmark
-  function isSelectedBookmark(bookmarkId){
-    return $scope.editedBookmark !== null && $scope.editedBookmark.id == bookmarkId;
+  //if true, remove it from the collection
+  function deleteBookmark(bookmark){
+    _.remove($scope.bookmarks, function(b){
+      return b.id == bookmark.id;
+    })
   }
 
   $scope.createBookmark = createBookmark;
   $scope.updateBookmark = updateBookmark;
-  $scope.isSelectedBookmark = isSelectedBookmark;
+  $scope.deleteBookmark = deleteBookmark;
 
   //-------------------------------------------------------------------------------------------------
   // CREATING AND EDITING STATES
