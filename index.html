@@ -10,6 +10,8 @@
 
   <link rel="stylesheet" href="assets/css/eggly.css">
   <link rel="stylesheet" href="assets/css/animations.css">
+
+  <link rel="shortcut icon" href="assets/img/favicon.ico" />
 </head>
 <!-- MainCtrl -->
 <body ng-controller="MainCtrl">
@@ -18,27 +20,16 @@
       <div class="col-sm-3 col-md-2 sidebar">
         <a href="#"><img class="logo" src="assets/img/eggly-logo.png"></a>
         <ul class="nav nav-sidebar">
-          <li><a href="#">Category</a></li>
-          <li><a href="#">Category</a></li>
-          <li><a href="#">Category</a></li>
+          <li ng-repeat="category in categories">
+            <a href="#">{{category.name}}</a>
+          </li>
         </ul>
       </div>
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-        <h1>{{ hello }}</h1>
-        <div>
+        <div ng-repeat="bookmark in bookmarks">
           <button type="button" class="close">&times;</button>
           <button type="button" class="btn btn-link"><span class="glyphicon glyphicon-pencil"></span></button>
-          <a href="#" target="_blank">Bookmark</a>
-        </div>
-        <div>
-          <button type="button" class="close">&times;</button>
-          <button type="button" class="btn btn-link"><span class="glyphicon glyphicon-pencil"></span></button>
-          <a href="#" target="_blank">Bookmark</a>
-        </div>
-        <div>
-          <button type="button" class="close">&times;</button>
-          <button type="button" class="btn btn-link"><span class="glyphicon glyphicon-pencil"></span></button>
-          <a href="#" target="_blank">Bookmark</a>
+          <a href="{{bookmark.url}}" target="_blank">{{bookmark.title}}</a>
         </div>
         <hr/>
       </div>
@@ -50,9 +41,5 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.32/angular.min.js"></script>
   <script src="app/eggly-app.start.js"></script>
-  <script>
-  document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] +
-  ':8080/livereload.js?snipver=1"></' + 'script>')
-</script>
 </body>
 </html>
