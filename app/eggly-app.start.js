@@ -36,8 +36,26 @@ angular.module('Eggly', [
   $scope.isCurrentCategory = isCurrentCategory;
 
   //-------------------------------------------------------------------------------------------------
-  // CREATING AND EDITING STATES
+  // CRUD
   //-------------------------------------------------------------------------------------------------
+
+  function resetCreateForm(){
+    $scope.newBookmark = {
+      title: '',
+      url: '',
+      category: $scope.currentCategory
+    }
+  }
+
+  function createBookmark(bookmark){
+    bookmark.id = $scope.bookmarks.length;
+    $scope.bookmarks.push(bookmark);
+
+    resetCreateForm();
+  }
+
+  $scope.createBookmark = createBookmark;
+
   function shouldShowCreating() {
     return $scope.currentCategory && !$scope.isEditing;
   }
@@ -45,6 +63,8 @@ angular.module('Eggly', [
   function startCreating() {
     $scope.isCreating = true;
     $scope.isEditing = false;
+
+    resetCreateForm();
   }
 
   function cancelCreating() {
