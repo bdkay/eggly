@@ -21,6 +21,18 @@ angular.module('Eggly', [
     {"id":8, "title": "Dump", "url": "http://dump.com", "category": "Humor" }
   ];
 
-})
+  $scope.currentCategory = null;
 
-;
+  function setCurrentCategory(category){
+    $scope.currentCategory = category;
+  }
+  //return true if the category is not null and the names match up
+  function isCurrentCategory(category){
+    return $scope.currentCategory !== null && category.name == currentCategory.name;
+  }
+
+  //until this line, these are private functions. Once attached to scope, they become public and avialable to the view
+  $scope.setCurrentCategory = setCurrentCategory;
+  $scope.isCurrentCategory = isCurrentCategory;
+
+});
