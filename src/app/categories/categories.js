@@ -18,8 +18,11 @@ angular.module('categories', [
     })
   $locationProvider.html5Mode(true);
   })
-  .controller('CategoriesListCtrl', function CategoriesCtrl(CategoriesModel){
+  .controller('CategoriesListCtrl', function CategoriesListCtrl(CategoriesModel){
     var categoriesListCtrl = this;
-    categoriesListCtrl.categories = CategoriesModel.getCategories();
+    CategoriesModel.getCategories()
+      .then(function(result){
+        categoriesListCtrl.categories = result;
+      });
   })
 ;
