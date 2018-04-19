@@ -3,14 +3,14 @@ angular.module('Eggly', [
   'categories',
   'categories.bookmarks'
 ])
-.config(function($stateProvider, $urlRouterProvider, $locationProvider){
+.config(function($stateProvider, $locationProvider, $urlRouterProvider){
   $stateProvider
-    .state('eggly', {
-        url: '/',
-        templateUrl: 'app/categories/bookmarks/bookmarks.tmpl.html'
-    });
-  
+  .state('eggly', {
+    url: '',
+    abstract: true
+  });
   $locationProvider.html5Mode(true);
+  $urlRouterProvider.otherwise('/');
 })
 .controller('MainCtrl', function($scope){
 

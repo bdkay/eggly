@@ -1,9 +1,9 @@
 angular.module('categories', [
   'eggly.models.categories'
 ])
-.config(function($stateProvider){
+.config(function($stateProvider, $locationProvider){
   $stateProvider
-    .state('categories', {
+    .state('eggly.categories', {
       url: '/',
       views: {
         'categories@': {
@@ -16,11 +16,9 @@ angular.module('categories', [
         }
       }
     })
+  $locationProvider.html5Mode(true);
   })
   .controller('CategoriesCtrl', function CategoriesCtrl($scope){
-
-  })
-  .controller('BookmarksCtrl', function BookmarksCtrl($scope){
 
   })
 ;
