@@ -7,7 +7,7 @@ angular.module('categories', [
       url: '/',
       views: {
         'categories@': {
-          controller: 'CategoriesCtrl',
+          controller: 'CategoriesListCtrl as categoriesListCtrl',
           templateUrl: 'app/categories/categories.tmpl.html'
         },
         'bookmarks@': {
@@ -18,7 +18,8 @@ angular.module('categories', [
     })
   $locationProvider.html5Mode(true);
   })
-  .controller('CategoriesCtrl', function CategoriesCtrl($scope){
-
+  .controller('CategoriesListCtrl', function CategoriesCtrl(CategoriesModel){
+    var categoriesListCtrl = this;
+    categoriesListCtrl.categories = CategoriesModel.getCategories();
   })
 ;
