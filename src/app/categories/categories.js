@@ -11,7 +11,7 @@ angular.module('categories', [
           templateUrl: 'app/categories/categories.tmpl.html'
         },
         'bookmarks@': {
-          controller: 'BookmarksCtrl',
+          controller: 'BookmarksListCtrl as bookmarksListCtrl',
           templateUrl: 'app/categories/bookmarks/bookmarks.tmpl.html'
         }
       }
