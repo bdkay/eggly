@@ -7,9 +7,9 @@ angular.module('Eggly', [
   $stateProvider
     .state('eggly', {
         url: '/',
-        templateUrl: 'app/categories/categories.tmpl.html',
-        controller: 'MainCtrl'
+        templateUrl: 'app/categories/bookmarks/bookmarks.tmpl.html'
     });
+  
   $locationProvider.html5Mode(true);
 })
 .controller('MainCtrl', function($scope){
