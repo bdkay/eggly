@@ -18,8 +18,34 @@ angular.module('eggly.models.categories', [
     return categories;
   }
 
+  //If categories exists, return a promise with when. It takes an object and wraps a promise around it. In the promise, put the categories
   model.getCategories = function() {
     return (categories) ? $q.when(categories) : $http.get(URLS.FETCH).then(cacheCategories);
+  };
+
+  model.getCategoryByName = function(categoryName){
+    //create deferred object
+    var deferred = $q.defer();
+
+    //loop over categories, compare name of current category to categoryName, find the category with that name
+    function findCategory(){
+      return _.find(categoriesm function(c){
+        return c.name = categoryName;
+      })
+    }
+
+    //if categories exists, resolve promise with the results of findCategories
+    if (categories){
+      deferred.resolve(findCategory());
+    } else {
+      model.getCategories()
+        .then(function(result){
+          deferred.resolve(findCategory());
+        })
+    }
+
+    //return promise object on that deferred object, can manually resolve or reject promise
+    return deferred.promise;
   };
 
   model.setCurrentCategory = function(category) {
