@@ -29,14 +29,15 @@ angular.module('eggly.models.categories', [
 
     //loop over categories, compare name of current category to categoryName, find the category with that name
     function findCategory(){
-      return _.find(categoriesm function(c){
+      return _.find(categories, function(c){
         return c.name = categoryName;
       })
     }
 
-    //if categories exists, resolve promise with the results of findCategories
+    //if categories exists, resolve promise with the results of findCategory
     if (categories){
       deferred.resolve(findCategory());
+    //if categories does not exist, call getCategories, take the result and resolve the promise
     } else {
       model.getCategories()
         .then(function(result){
