@@ -35,7 +35,7 @@ angular.module('categories.bookmarks.create', [
       }
     }
 
-    createBookMarkCtrl.cancelCreating = cancelCreating;
+    createBookmarkCtrl.cancelCreating = cancelCreating;
     creatBookmarkCtrl.creatbookMark = createBookmark;
 
     resetForm();
