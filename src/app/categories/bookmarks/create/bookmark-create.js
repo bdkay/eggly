@@ -31,7 +31,7 @@ angular.module('categories.bookmarks.create', [
       createBookmarkCtrl.newBookmark = {
         title: '',
         url: '',
-        category: '$stateParams.category'
+        category: $stateParams.category
       }
     }
 
