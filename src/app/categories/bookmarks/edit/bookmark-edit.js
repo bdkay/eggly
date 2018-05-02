@@ -17,7 +17,7 @@ angular.module('categories.bookmarks.edit', [])
       category: $stateParams.category
     })
   }
-
+  
   function updateBookmark() {
     editBookmarkCtrl.bookmark = angular.copy(editBookmarkCtrl.editedBookmark);
     BookmarksModel.updateBookmark(editBookmarkCtrl.editedBookmark);
