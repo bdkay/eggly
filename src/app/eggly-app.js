@@ -13,7 +13,6 @@ angular.module('Eggly', [
   $urlRouterProvider.otherwise('/');
 })
 .controller('MainCtrl', function($scope, $state){
-
   $scope.isCreating = false;
   $scope.isEditing = false;
   $scope.currentCategory = null;
