@@ -1,4 +1,5 @@
 angular.module('Eggly', [
+  'ngAnimate',
   'ui.router',
   'categories',
   'categories.bookmarks'
@@ -12,6 +13,7 @@ angular.module('Eggly', [
   $locationProvider.html5Mode(true);
   $urlRouterProvider.otherwise('/');
 })
+<<<<<<< HEAD
 .controller('MainCtrl', function($scope, $state){
   $scope.isCreating = false;
   $scope.isEditing = false;
@@ -128,3 +130,5 @@ angular.module('Eggly', [
   $scope.shouldShowEditing = shouldShowEditing;
 
 });
+=======
+>>>>>>> e5fea09c11acc838e4e2701b69382adc1d9c49e4

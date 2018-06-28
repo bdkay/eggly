@@ -49,8 +49,8 @@ angular.module('eggly.models.categories', [
     return deferred.promise;
   };
 
-  model.setCurrentCategory = function(category) {
-    return model.getCategoryByName(category).then(function(category) {
+  model.setCurrentCategory = function(categoryName) {
+    return model.getCategoryByName(categoryName).then(function(category) {
       currentCategory = category;
     })
   };

@@ -17,7 +17,7 @@ angular.module('categories.bookmarks', [
     });
   $locationProvider.html5Mode(true);
 })
-.controller('BookmarksListCtrl', function ($stateParams, CategoriesModel, BookmarksModel) {
+.controller('BookmarksListCtrl', function ($stateParams, BookmarksModel, CategoriesModel) {
   var bookmarksListCtrl = this;
 
   CategoriesModel.setCurrentCategory($stateParams.category);
@@ -29,4 +29,5 @@ angular.module('categories.bookmarks', [
 
   bookmarksListCtrl.getCurrentCategory = CategoriesModel.getCurrentCategory;
   bookmarksListCtrl.getCurrentCategoryName = CategoriesModel.getCurrentCategoryName;
+  bookmarksListCtrl.deleteBookmark = BookmarksModel.deleteBookmark;
 });
